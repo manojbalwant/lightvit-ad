@@ -164,22 +164,6 @@ ARM Cortex-A57, 4 GB shared LPDDR4), operated in headless mode via SSH.
 Power measured via INA3221 VDD_IN channel (source-agnostic: valid for
 both micro-USB and barrel jack inputs).
 
----
-
-## Key Differences from Original Code (Bug Fixes)
-
-This repository corrects five issues identified in the original training script:
-
-| Issue | Original | Fixed |
-|---|---|---|
-| ViTStudent construction | `timm.create_model(..., depth=6)` — crashes on timm ≤0.3.x | Block-slicing: `vit.blocks = vit.blocks[:depth]` |
-| Checkpoint keys | Saves `{'state_dict': ...}` | Saves `{'teacher_state_dict': ..., 'student_state_dict': ..., 'best_auc': ...}` |
-| Epoch selection | Saves last epoch (epoch 15) always | Saves best-val-AUC epoch via `copy.deepcopy` |
-| Memory tracking | Global variable, not thread-safe | List-based context manager (state passed by reference) |
-| FLOPs profiling | `deepspeed` only — unavailable on JetPack 4.6 | `thop` with closed-form ViT FLOP fallback |
-
----
-
 ## Results
 
 ### Drone-Anomaly (FP32 base / TRT INT8)
