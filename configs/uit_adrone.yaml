@@ -1,0 +1,48 @@
+# configs/uit_adrone.yaml
+# Configuration for UIT-ADrone dataset (Tran et al., 2023)
+# https://sites.google.com/uit.edu.vn/uit-adrone
+
+# ── Paths ──────────────────────────────────────────────────────────────────
+dataset_root:     dataset/UIT-ADrone
+experiments_root: experiments
+
+data_path: dataset/UIT-ADrone
+save_path:  experiments/UIT-ADrone
+valid_file: DJI_0146
+
+# ── Model / data ────────────────────────────────────────────────────────────
+image_size:   224
+patch_size:   16
+batch_size:   64
+num_frames:   1
+frame_step:   1
+num_pred:     0
+
+# ── Training ─────────────────────────────────────────────────────────────────
+lr:           5.0e-4
+wd:           5.0e-2
+joint_epochs: 15
+num_workers:  16
+
+# ── Ablation variants ────────────────────────────────────────────────────────
+ablation_variants:
+  - base
+  - fp16
+  - trt_fp16
+  - trt_int8
+
+# ── Benchmarking ─────────────────────────────────────────────────────────────
+bench_warmup:            20
+bench_trials:           200
+bench_independent_runs:   3
+bench_ci_alpha:         0.95
+realtime_10fps_ms:     100.0
+
+# ── TensorRT ─────────────────────────────────────────────────────────────────
+trt_workspace_gb:       1
+trt_calib_frames:     500
+trt_calib_batch_size:   1
+trt_calib_cache:  trt_int8_calib_uitadrone.cache
+trt_onnx_path:    model_trt_base.onnx
+trt_engine_fp16_path: engine_fp16.trt
+trt_engine_int8_path: engine_int8.trt

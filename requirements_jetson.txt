@@ -1,0 +1,35 @@
+# requirements_jetson.txt — NVIDIA Jetson Nano (JetPack 4.6)
+# ARM Cortex-A57 + Maxwell GPU + 4 GB shared LPDDR4
+#
+# Install PyTorch for JetPack 4.6 FIRST (before this file):
+#   pip3 install torch torchvision \
+#     --index-url https://developer.download.nvidia.com/compute/redist/jp/v46/pytorch/
+#
+# Install TensorRT Python bindings:
+#   sudo apt-get install -y python3-libnvinfer-dev
+#
+# Then install this file:
+#   pip3 install -r requirements_jetson.txt
+
+# Core ML stack (ARM-compatible wheels)
+timm==0.5.4          # Last version that doesn't require torch>=1.13 on ARM
+numpy>=1.19.0
+pandas>=1.1.0
+scikit-learn>=0.24.0
+scipy>=1.5.0
+matplotlib>=3.3.0
+Pillow>=8.0.0
+opencv-python-headless>=4.5.0
+tqdm>=4.60.0
+psutil>=5.8.0
+pyyaml>=5.4
+
+# ONNX and graph simplifier
+onnx>=1.9.0
+onnx-simplifier>=0.3.5
+
+# pycuda (required for TRT INT8 INT8 calibration and engine inference)
+pycuda>=2021.1
+
+# FLOPs profiling (lightweight, no CUDA build)
+thop>=0.0.31

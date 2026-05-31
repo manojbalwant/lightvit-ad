@@ -1,0 +1,27 @@
+# requirements.txt — x86 GPU server (training)
+# Tested on: Ubuntu, PyTorch 1.12.1, CUDA 11.x
+# Platform used in paper: IIT Patna server, 24-core x86_64, 252 GB RAM
+
+torch>=1.12.0
+torchvision>=0.13.0
+timm>=0.6.0
+numpy>=1.21.0
+pandas>=1.3.0
+scikit-learn>=1.0.0
+scipy>=1.7.0
+matplotlib>=3.4.0
+Pillow>=9.0.0
+opencv-python>=4.5.0
+tqdm>=4.62.0
+psutil>=5.9.0
+pyyaml>=6.0
+
+# ONNX export (needed to build TRT engines on Jetson Nano)
+onnx>=1.12.0
+onnx-simplifier>=0.4.0
+
+# FLOPs profiling (preferred; falls back to closed-form formula)
+thop>=0.1.0
+
+# Optional: DeepSpeed profiler (x86 only)
+# deepspeed>=0.7.0

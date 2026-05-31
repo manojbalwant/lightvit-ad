@@ -1,0 +1,64 @@
+# configs/drone_anomaly.yaml
+# Configuration for Drone-Anomaly dataset (Jin et al., 2022)
+# https://github.com/jinpujin/Drone-Anomaly
+
+# ── Paths ──────────────────────────────────────────────────────────────────
+dataset_root:     dataset/Drone-Anomaly
+experiments_root: experiments
+
+# Default scene (override with --scene on the command line)
+data_path: dataset/Drone-Anomaly/Railway Inspection
+save_path:  experiments/Railway_Inspection
+valid_file: r_s1_te_01
+
+# Per-scene validation video IDs (used when --scene is passed)
+scene_valid_file:
+  "Highway":               h_s1_te_01
+  "Railway Inspection":    r_s1_te_01
+  "Solar Panel Inspection": sp_s1_te_01
+  "Farmland Inspection":   fi_s1_te_01
+  "Bike Roundabout":       b_s1_te_01
+  "Vehicle Roundabout":    vr_s1_te_01
+  "Crossroads":            c_s1_te_01
+
+# ── Model / data ────────────────────────────────────────────────────────────
+image_size:   224
+patch_size:   16
+batch_size:   64
+num_frames:   1
+frame_step:   1
+num_pred:     0
+
+# ── Training ─────────────────────────────────────────────────────────────────
+lr:           5.0e-4
+wd:           5.0e-2
+joint_epochs: 15
+
+# ── Data loading ─────────────────────────────────────────────────────────────
+# x86 server: 16 workers; Jetson Nano: 4 workers (4 ARM cores)
+num_workers:  16
+
+# ── Ablation variants ────────────────────────────────────────────────────────
+# Set to ['base'] for training-only runs.
+# All four are used by deploy_jetson.py.
+ablation_variants:
+  - base
+  - fp16
+  - trt_fp16
+  - trt_int8
+
+# ── Benchmarking (Jetson Nano) ────────────────────────────────────────────────
+bench_warmup:            20
+bench_trials:           200
+bench_independent_runs:   3
+bench_ci_alpha:         0.95
+realtime_10fps_ms:     100.0
+
+# ── TensorRT ─────────────────────────────────────────────────────────────────
+trt_workspace_gb:       1
+trt_calib_frames:     500
+trt_calib_batch_size:   1
+trt_calib_cache:  trt_int8_calib.cache
+trt_onnx_path:    model_trt_base.onnx
+trt_engine_fp16_path: engine_fp16.trt
+trt_engine_int8_path: engine_int8.trt
