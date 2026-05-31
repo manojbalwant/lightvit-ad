@@ -200,8 +200,7 @@ If you use this code, please cite:
 
 ```bibtex
 @article{balwant2025lightvitad,
-  title   = {{LightViT-AD}: A Dynamic Post-Training Quantized Vision Transformer
-             for Unsupervised Anomaly Detection in {UAV} Imagery},
+  title   = {{LightViT-AD}: Lightweight Vision Transformer Distillation for Unsupervised UAV Anomaly Detection with Real-Time Edge Inference},
   author  = {Balwant, Manoj Kumar and Mishra, Shivendu and Misra, Rajiv},
   journal = {Aerospace Science and Technology},
   year    = {2025},
