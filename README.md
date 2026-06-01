@@ -1,6 +1,7 @@
 # LightViT-AD
 
-**LightViT-AD: A Dynamic Post-Training Quantized Vision Transformer for Unsupervised Anomaly Detection in UAV Imagery**
+**LightViT-AD: Lightweight Vision Transformer Distillation for Unsupervised UAV
+Anomaly Detection with Real-Time Edge Inference**
 
 [![Python 3.8+](https://img.shields.io/badge/python-3.8+-blue.svg)](https://www.python.org/)
 [![PyTorch 1.12](https://img.shields.io/badge/PyTorch-1.12-orange.svg)](https://pytorch.org/)
