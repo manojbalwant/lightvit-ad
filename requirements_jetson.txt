@@ -12,24 +12,21 @@
 #   pip3 install -r requirements_jetson.txt
 
 # Core ML stack (ARM-compatible wheels)
-timm==0.5.4          # Last version that doesn't require torch>=1.13 on ARM
-numpy>=1.19.0
-pandas>=1.1.0
-scikit-learn>=0.24.0
-scipy>=1.5.0
-matplotlib>=3.3.0
-Pillow>=8.0.0
-opencv-python-headless>=4.5.0
-tqdm>=4.60.0
-psutil>=5.8.0
-pyyaml>=5.4
-
-# ONNX and graph simplifier
-onnx>=1.9.0
-onnx-simplifier>=0.3.5
-
-# pycuda (required for TRT INT8 INT8 calibration and engine inference)
-pycuda>=2021.1
+TensorRT: 8.2.1.8
+timm 0.4.12
+numpy 1.19.5
+pandas 1.1.5
+scikit-learn 0.24.2
+scipy 1.5.4
+matplotlib 2.1.1
+Pillow 9.0.1
+opencv-python-headless NOT INSTALLED
+tqdm 4.64.1
+psutil 5.8.0
+PyYAML 3.12
+onnx 1.11.0
+onnx-simplifier NOT INSTALLED
+pycuda 2021.1 # pycuda (required for TRT INT8 INT8 calibration and engine inference)
 
 # FLOPs profiling (lightweight, no CUDA build)
 thop>=0.0.31
