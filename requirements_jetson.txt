@@ -1,7 +1,7 @@
 # requirements_jetson.txt — NVIDIA Jetson Nano (JetPack 4.6)
 # ARM Cortex-A57 + Maxwell GPU + 4 GB shared LPDDR4
 #
-# Install PyTorch for JetPack 4.6 FIRST (before this file):
+# Install PyTorch for JetPack 4.6.1 FIRST (before this file):
 #   pip3 install torch torchvision \
 #     --index-url https://developer.download.nvidia.com/compute/redist/jp/v46/pytorch/
 #
