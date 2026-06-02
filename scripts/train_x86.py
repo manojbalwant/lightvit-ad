@@ -186,10 +186,10 @@ def main():
               f'val_auc={val_auc:.4f}')
 
         # FIX-B: track and deepcopy the best-val-AUC student state
-        if val_auc > best_auc:
-            best_auc           = val_auc
-            best_student_state = copy.deepcopy(student.state_dict())
-            print(f'  *** New best AUC: {best_auc:.4f} at epoch {epoch} ***')
+        #if val_auc > best_auc:
+        best_auc           = val_auc
+        best_student_state = copy.deepcopy(student.state_dict())
+        print(f'  *** New best AUC: {best_auc:.4f} at epoch {epoch} ***')
 
     # Restore best student before saving / evaluation
     student.load_state_dict(best_student_state)
