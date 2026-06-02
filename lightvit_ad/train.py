@@ -10,14 +10,10 @@ FIX-A  Checkpoint format: saves both teacher_state_dict and student_state_dict
        File 2 (jetson_anomaly_detection_v3) expects teacher_state_dict and
        student_state_dict; the original key caused KeyError on load.
 
-FIX-B  Best-epoch selection: saves the best-val-AUC epoch via copy.deepcopy,
-       not the last epoch.  With OneCycleLR over 15 epochs the last epoch
-       is not necessarily the best-generalising model.
-
-FIX-C  validate() now returns both val_loss and val_auc so best-epoch
+FIX-B  validate() now returns both val_loss and val_auc so best-epoch
        tracking is possible.
 
-FIX-D  evaluate_plot() now additionally reports PR-AUC, Best-F1, and the
+FIX-C  evaluate_plot() now additionally reports PR-AUC, Best-F1, and the
        corresponding decision threshold, addressing Reviewer R3.4.
 """
 
