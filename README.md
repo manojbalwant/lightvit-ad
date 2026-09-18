@@ -200,12 +200,15 @@ both micro-USB and barrel jack inputs).
 If you use this code, please cite:
 
 ```bibtex
-@article{balwant2025lightvitad,
+@article{Balwant2026LightViTAD,
+  author  = {Balwant, M. K. and Mishra, S. and Misra, R.},
   title   = {{LightViT-AD}: Lightweight Vision Transformer Distillation for Unsupervised UAV Anomaly Detection with Real-Time Edge Inference},
-  author  = {Balwant, Manoj Kumar and Mishra, Shivendu and Misra, Rajiv},
-  journal = {Aerospace Science and Technology},
-  year    = {2025},
-  note    = {Under review}
+  journal = {International Journal of Machine Learning and Cybernetics},
+  volume  = {17},
+  pages   = {464},
+  year    = {2026},
+  doi     = {10.1007/s13042-026-03306-y},
+  url     = {https://doi.org/10.1007/s13042-026-03306-y}
 }
 ```
 
