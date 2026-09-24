@@ -170,7 +170,7 @@ def main():
     )
     scaler = torch.cuda.amp.GradScaler()
 
-    # ── Training loop (FIX-B: best-epoch checkpoint) ─────────────────────
+    # ── Training loop (best-epoch checkpoint) ─────────────────────
     best_auc          = 0.0
     best_student_state = None
 
@@ -185,7 +185,6 @@ def main():
               f'train_loss={train_loss:.5f}  val_loss={val_loss:.5f}  '
               f'val_auc={val_auc:.4f}')
 
-        # FIX-B: track and deepcopy the best-val-AUC student state
         #if val_auc > best_auc:
         best_auc           = val_auc
         best_student_state = copy.deepcopy(student.state_dict())
