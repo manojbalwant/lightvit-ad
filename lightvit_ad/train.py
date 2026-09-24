@@ -1,20 +1,6 @@
 """
 lightvit_ad/train.py
 ====================
-Training loop, validation, and evaluation with all fixes applied.
-
-Fixes over the original script
--------------------------------
-FIX-A  Checkpoint format: saves both teacher_state_dict and student_state_dict
-       (original saved only {'state_dict': student.state_dict()}).
-       File 2 (jetson_anomaly_detection_v3) expects teacher_state_dict and
-       student_state_dict; the original key caused KeyError on load.
-
-FIX-B  validate() now returns both val_loss and val_auc so best-epoch
-       tracking is possible.
-
-FIX-C  evaluate_plot() now additionally reports PR-AUC, Best-F1, and the
-       corresponding decision threshold, addressing Reviewer R3.4.
 """
 
 import os
@@ -83,7 +69,7 @@ def train_epoch(
 
 
 # ---------------------------------------------------------------------------
-# Validation  (FIX-C: returns val_auc for best-epoch tracking)
+# Validation 
 # ---------------------------------------------------------------------------
 
 def validate(
@@ -123,7 +109,7 @@ def validate(
 
 
 # ---------------------------------------------------------------------------
-# Full evaluation with plotting (FIX-D: PR-AUC, Best-F1, threshold)
+# Full evaluation with plotting
 # ---------------------------------------------------------------------------
 
 def evaluate_plot(
@@ -245,7 +231,7 @@ def evaluate_plot(
 
 
 # ---------------------------------------------------------------------------
-# Checkpoint I/O  (FIX-A: consistent keys for both train.py and deploy_jetson.py)
+# Checkpoint I/O 
 # ---------------------------------------------------------------------------
 
 def save_checkpoint(
@@ -288,6 +274,6 @@ def load_checkpoint(path: str, device: torch.device):
             f"Checkpoint at '{path}' is missing 'teacher_state_dict' or "
             f"'student_state_dict'. Keys found: {list(ckpt.keys())}. "
             f"If this checkpoint was saved by the original training script "
-            f"(key='state_dict'), please re-train with the fixed train_x86.py."
+            f"(key='state_dict'), please re-train with the train_x86.py."
         )
     return teacher_sd, student_sd, mean_std, best_auc
