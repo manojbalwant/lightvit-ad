@@ -2,7 +2,6 @@
 lightvit_ad/dataset.py
 ======================
 Self-contained DataLoader and mean/std computation.
-No external project modules (config, data_utils_norm_n, utils) required.
 """
 
 import os
