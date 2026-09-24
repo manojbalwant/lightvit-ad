@@ -103,7 +103,7 @@ class ViTTeacher(nn.Module):
 
 
 # ---------------------------------------------------------------------------
-# ViTStudent  (FIX-1: block slicing, not timm kwarg)
+# ViTStudent
 # ---------------------------------------------------------------------------
 
 class ViTStudent(nn.Module):
@@ -118,10 +118,6 @@ class ViTStudent(nn.Module):
     Input sequence:  [cls, dist, latent, latent, ...(×196)]
                       ∈ R^(B × 198 × 192)
 
-    FIX-1: block slicing avoids the timm version-dependent depth= kwarg crash.
-           timm.create_model is called with default depth=12, then blocks[:6]
-           are retained.  The resulting student architecture is identical to
-           using depth=6 on timm ≥0.6.x but works on all timm versions.
     """
 
     def __init__(
