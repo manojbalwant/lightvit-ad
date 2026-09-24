@@ -2,22 +2,6 @@
 lightvit_ad/models.py
 =====================
 ViTTeacher, ViTStudent, CombinedModel.
-
-Fixes over the original train_val_VIT_Distillation_Autoencoder_base_tiny_optimized_trial.py
----------------------------------------------------------------------------
-FIX-1  ViTStudent: block-slicing instead of timm create_model(depth=6) kwarg.
-       The depth kwarg is not accepted on timm ≤0.3.x (JetPack 4.6) and raises
-       TypeError: got multiple values for keyword argument 'embed_dim'.
-       The slice approach works on all timm versions.
-
-FIX-2  Token normalisation: MSE loss is intentionally computed on raw,
-       unnormalised token vectors (no ℓ₂ normalisation before loss).
-       This design choice is now documented explicitly (see revised manuscript
-       Section 3.3) and is preserved here unchanged.
-
-FIX-3  All system-size references use the combined teacher+student figure.
-       The student alone (depth=6, embed_dim=192) ≈ 5.7 M parameters;
-       the combined system ≈ 11.5 M parameters, 3.54 GFLOPs.
 """
 
 import torch
