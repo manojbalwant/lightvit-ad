@@ -2,16 +2,6 @@
 lightvit_ad/utils.py
 ====================
 Seeding, FLOPs profiling with tiered fallback, memory tracking.
-
-FIX: Replaces deepspeed-only FLOPs profiling with a tiered approach:
-  1. Try thop (lightweight, available on JetPack 4.6).
-  2. Fall back to closed-form ViT FLOP formula (no external dependency).
-  deepspeed is not available in JetPack 4.6 and is therefore unsuitable
-  for the Jetson Nano deployment environment.
-
-FIX: Memory tracking uses a list-based context manager (state passed by
-  reference) instead of a global variable, eliminating the thread-safety
-  race condition in the original implementation.
 """
 
 import os
@@ -40,7 +30,7 @@ def set_seed(seed: int = 42) -> None:
 
 
 # ---------------------------------------------------------------------------
-# FLOPs profiling  (FIX: tiered fallback — thop → closed-form formula)
+# FLOPs profiling 
 # ---------------------------------------------------------------------------
 
 try:
@@ -146,7 +136,7 @@ def compute_flops_and_params(
 
 
 # ---------------------------------------------------------------------------
-# Memory tracking  (FIX: list-based context manager, thread-safe)
+# Memory tracking 
 # ---------------------------------------------------------------------------
 
 @contextmanager
